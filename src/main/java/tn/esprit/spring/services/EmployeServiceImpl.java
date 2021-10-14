@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ import tn.esprit.spring.repository.TimesheetRepository;
 @Service
 public class EmployeServiceImpl implements IEmployeService {
 
+	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
 	@Autowired
 	EmployeRepository employeRepository;
 	@Autowired
@@ -47,7 +50,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		Employe employe = employeRepository.findById(employeId).get();
 		employe.setEmail(email);
 		employeRepository.save(employe);
-
+		l.info("l'employe email a été mis a jour");
 	}
 
 	@Transactional	
@@ -56,18 +59,16 @@ public class EmployeServiceImpl implements IEmployeService {
 		Employe employeManagedEntity = employeRepository.findById(employeId).get();
 
 		if(depManagedEntity.getEmployes() == null){
-
 			List<Employe> employes = new ArrayList<>();
 			employes.add(employeManagedEntity);
 			depManagedEntity.setEmployes(employes);
 		}else{
-
 			depManagedEntity.getEmployes().add(employeManagedEntity);
 		}
 
 		// à ajouter? 
 		deptRepoistory.save(depManagedEntity); 
-
+		l.info("l'employe a été affecté au département");
 	}
 	@Transactional
 	public void desaffecterEmployeDuDepartement(int employeId, int depId)
@@ -78,6 +79,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		for(int index = 0; index < employeNb; index++){
 			if(dep.getEmployes().get(index).getId() == employeId){
 				dep.getEmployes().remove(index);
+				l.warn("l'employe déja existe");
 				break;//a revoir
 			}
 		}
@@ -87,6 +89,7 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public int ajouterContrat(Contrat contrat) {
 		contratRepoistory.save(contrat);
+		l.info("le contrat a été ajouté avec succés");
 		return contrat.getReference();
 	}
 
@@ -120,6 +123,7 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public void deleteContratById(int contratId) {
 		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
+		l.warn("Contrat a été supprimé");
 		contratRepoistory.delete(contratManagedEntity);
 
 	}
