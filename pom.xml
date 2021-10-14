@@ -92,8 +92,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.16</version>
+			<artifactId>lombok</artifactId><!--$NO-MVN-MAN-VER$-->
+			<version>1.18.10</version>
 		</dependency>
 		<!-- JSF -->
 
@@ -104,11 +104,23 @@
 	<build>
 		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 		<plugins>
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
+	
+	<distributionManagement>
+<snapshotRepository>
+<id>nexus-snapshots</id>
+<url>http://localhost:8081/repository/maven-snapshots/</url>
+</snapshotRepository>
+<repository>
+<id>nexus-releases</id>
+<url>http://localhost:8081/repository/maven-releases/</url>
+</repository>
+</distributionManagement>
 
 </project>
