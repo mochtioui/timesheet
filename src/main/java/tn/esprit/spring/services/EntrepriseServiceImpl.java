@@ -23,12 +23,14 @@ private static final Logger l = LogManager.getLogger(EntrepriseServiceImpl.class
 	DepartementRepository deptRepoistory;
 	
 	public int ajouterEntreprise(Entreprise entreprise) {
-		entrepriseRepoistory.save(entreprise);
+		entrepriseRepoistory.save(entreprise);		
+l.info("Entreprise Ajouté");
 		return entreprise.getId();
 	}
 
 	public int ajouterDepartement(Departement dep) {
 		deptRepoistory.save(dep);
+l.info("Departement Ajouté");
 		return dep.getId();
 	}
 	
@@ -43,6 +45,7 @@ private static final Logger l = LogManager.getLogger(EntrepriseServiceImpl.class
 				
 				depManagedEntity.setEntreprise(entrepriseManagedEntity);
 				deptRepoistory.save(depManagedEntity);
+l.info("vous avez  affecter un Departement a une Entreprise ");
 		
 	}
 	
@@ -51,6 +54,9 @@ private static final Logger l = LogManager.getLogger(EntrepriseServiceImpl.class
 		List<String> depNames = new ArrayList<>();
 		for(Departement dep : entrepriseManagedEntity.getDepartements()){
 			depNames.add(dep.getName());
+
+
+l.info("getAllDepartementsNamesByEntreprise ");
 		}
 		
 		return depNames;
@@ -59,16 +65,22 @@ private static final Logger l = LogManager.getLogger(EntrepriseServiceImpl.class
 	@Transactional
 	public void deleteEntrepriseById(int entrepriseId) {
 		entrepriseRepoistory.delete(entrepriseRepoistory.findById(entrepriseId).get());	
+
+l.warn("Vous avez supprimer une entreprise  ");
 	}
 
 	@Transactional
 	public void deleteDepartementById(int depId) {
 		deptRepoistory.delete(deptRepoistory.findById(depId).get());	
+
+
+l.info("Vous avez supprimer un Departement");
 	}
 
 
 	public Entreprise getEntrepriseById(int entrepriseId) {
-		return entrepriseRepoistory.findById(entrepriseId).get();	
+		return entrepriseRepoistory.findById(entrepriseId).get();
+
 	}
 
 }
