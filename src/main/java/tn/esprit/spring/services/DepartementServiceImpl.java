@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.repository.DepartementRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 @Service
 public class DepartementServiceImpl implements IDepartementService {
@@ -14,10 +17,14 @@ public class DepartementServiceImpl implements IDepartementService {
 
 	@Autowired
 	DepartementRepository deptRepoistory;
+	
+	private static final Logger log = LogManager.getLogger(EntrepriseServiceImpl.class);
 
 
 	public List<Departement> getAllDepartements() {
+		log.info("Liste départements +++ : " + (List<Departement>) deptRepoistory.findAll());
 		return (List<Departement>) deptRepoistory.findAll();
+		
 	}
 
 }
