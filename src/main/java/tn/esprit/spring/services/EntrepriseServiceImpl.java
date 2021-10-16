@@ -53,7 +53,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 	
 	public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
-		Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
+		 Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
 		List<String> depNames = new ArrayList<>();
 		for(Departement dep : entrepriseManagedEntity.getDepartements()){
 			depNames.add(dep.getName());
@@ -63,8 +63,17 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 
 	@Transactional
-	public void deleteEntrepriseById(int entrepriseId) {
-		entrepriseRepoistory.delete(entrepriseRepoistory.findById(entrepriseId).get());	
+	public void deleteEntrepriseById(int id) {
+		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
+		if (entreprise.isPresent()) {
+			
+			entrepriseRepoistory.delete(entrepriseRepoistory.findById(id).get());	
+		}
+		else {
+			System.out.println("N'existe pas");
+		}
+
+	
 	}
 
 	@Transactional
