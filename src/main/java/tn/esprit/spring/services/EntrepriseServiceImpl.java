@@ -1,6 +1,7 @@
 package tn.esprit.spring.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,14 +53,23 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		
 	}
 	
-	public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
-		 Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
+public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
+		
+
+		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
+		
+		if(entrepriseManagedEntity.isPresent()) {
+		
 		List<String> depNames = new ArrayList<>();
-		for(Departement dep : entrepriseManagedEntity.getDepartements()){
+		Entreprise entreprise = entrepriseManagedEntity.get();
+		for(Departement dep : entreprise.getDepartements()){
 			depNames.add(dep.getName());
 		}
-		
-		return depNames;
+		 return depNames; 
+			
+		}
+		else return Collections.emptyList();
+	
 	}
 
 	@Transactional
@@ -90,8 +100,15 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 
 
-	public Entreprise getEntrepriseById(int entrepriseId) {
-		return entrepriseRepoistory.findById(entrepriseId).get();	
+	public Entreprise getEntrepriseById(int id) {
+		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
+		 if (entreprise.isPresent()) {
+			 Entreprise entreprisee = entrepriseRepoistory.findById(id).get();	
+				return entreprisee;	
+		 }
+		return null;
+
+	
 	}
 
 }
