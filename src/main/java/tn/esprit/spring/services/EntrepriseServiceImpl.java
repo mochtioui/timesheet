@@ -102,10 +102,18 @@ public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
 
 	public Entreprise getEntrepriseById(int id) {
 		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
+		try {
+			Entreprise entreprisee = null;
 		 if (entreprise.isPresent()) {
-			 Entreprise entreprisee = entrepriseRepoistory.findById(id).get();	
+			
+			 entreprisee = entreprise.get();	
 				return entreprisee;	
 		 }
+		}
+		 catch(Exception e){
+			  System.out.println("Exception");
+		    } 
+
 		return null;
 
 	
