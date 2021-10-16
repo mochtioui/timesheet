@@ -13,7 +13,8 @@ import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EntrepriseRepository;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 @Service
 public class EntrepriseServiceImpl implements IEntrepriseService {
 
@@ -21,7 +22,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
     EntrepriseRepository entrepriseRepoistory;
 	@Autowired
 	DepartementRepository deptRepoistory;
-	
+	private static final Logger log = LogManager.getLogger(EntrepriseServiceImpl.class);
 	public int ajouterEntreprise(Entreprise entreprise) {
 		entrepriseRepoistory.save(entreprise);
 		return entreprise.getId();
@@ -48,29 +49,29 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 	
 	  catch(Exception e){
-		  System.out.println("Exception");
+		 log.info(e.toString());
 	    } 
 		
 	}
 	
-public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
+		public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
+				
 		
-
-		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
-		
-		if(entrepriseManagedEntity.isPresent()) {
-		
-		List<String> depNames = new ArrayList<>();
-		Entreprise entreprise = entrepriseManagedEntity.get();
-		for(Departement dep : entreprise.getDepartements()){
-			depNames.add(dep.getName());
-		}
-		 return depNames; 
+				Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
+				
+				if(entrepriseManagedEntity.isPresent()) {
+				
+				List<String> depNames = new ArrayList<>();
+				Entreprise entreprise = entrepriseManagedEntity.get();
+				for(Departement dep : entreprise.getDepartements()){
+					depNames.add(dep.getName());
+				}
+				 return depNames; 
+					
+				}
+				else return Collections.emptyList();
 			
-		}
-		else return Collections.emptyList();
-	
-	}
+			}
 
 	@Transactional
 	public void deleteEntrepriseById(int id) {
@@ -81,11 +82,11 @@ public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
 			entrepriseRepoistory.delete(entreprise.get());	
 		}
 		else {
-			System.out.println("N'existe pas");
+			log.info("N'existe pas");
 		}
 		}
 		 catch(Exception e){
-			  System.out.println("Exception");
+			 log.info("Exception");
 		    } 
 
 	
@@ -100,11 +101,11 @@ public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
          deptRepoistory.delete(departement.get());	
 		}
 		else {
-			System.out.println("N'existe pas");
+			log.info("N'existe pas");
 		}
 		}
 		 catch(Exception e){
-			  System.out.println("Exception");
+			 log.info("Exception");
 		    } 
 	}
 
@@ -120,7 +121,7 @@ public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
 		 }
 		}
 		 catch(Exception e){
-			  System.out.println("Exception");
+			 log.info(e.toString());
 		    } 
 
 		return null;
