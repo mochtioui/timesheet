@@ -38,8 +38,8 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		try {
 		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
 		Optional <Departement> depManagedEntity = deptRepoistory.findById(depId);
-		log.info("l'entreprise"+entrepriseManagedEntity);
-		log.info("le departement"+depManagedEntity);
+		log.info(entrepriseManagedEntity);
+		log.info(depManagedEntity);
 		
 		
 		if(depManagedEntity.isPresent() && entrepriseManagedEntity.isPresent()) {
@@ -60,7 +60,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 		try {
 			Optional<Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
-			log.info("l'entreprise"+entrepriseManagedEntity);
+			log.info(entrepriseManagedEntity);
 
 			if (entrepriseManagedEntity.isPresent()) {
 
@@ -86,7 +86,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	@Transactional
 	public void deleteEntrepriseById(int id) {
 		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
-		log.info("l'entreprise"+entreprise);
+		log.info(entreprise);
 
 		try {
 			
@@ -108,7 +108,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	@Transactional
 	public void deleteDepartementById(int id) {
 		Optional <Departement> departement = deptRepoistory.findById(id);
-		log.info("le departement"+departement);
+		log.info(departement);
 
 		try {
 		
@@ -127,7 +127,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	public Entreprise getEntrepriseById(int id) {
 		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
-		log.info("l'entreprise"+entreprise);
+		log.info(entreprise);
 
 		try {
 			Entreprise entreprisee = null;
