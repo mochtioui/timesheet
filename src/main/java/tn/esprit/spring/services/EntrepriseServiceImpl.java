@@ -38,6 +38,8 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		try {
 		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
 		Optional <Departement> depManagedEntity = deptRepoistory.findById(depId);
+		log.info("l'entreprise"+entrepriseManagedEntity);
+		log.info("le departement"+depManagedEntity);
 		
 		
 		if(depManagedEntity.isPresent() && entrepriseManagedEntity.isPresent()) {
@@ -49,7 +51,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	}
 	
 	  catch(Exception e){
-		 log.info(e.toString());
+		 log.error(e.toString());
 	    } 
 		
 	}
@@ -58,6 +60,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 		try {
 			Optional<Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
+			log.info("l'entreprise"+entrepriseManagedEntity);
 
 			if (entrepriseManagedEntity.isPresent()) {
 
@@ -74,7 +77,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		}
 
 		catch (Exception e) {
-			log.info(e.toString());
+			log.error(e.toString());
 			return Collections.emptyList();
 		}
 
@@ -83,17 +86,20 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	@Transactional
 	public void deleteEntrepriseById(int id) {
 		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
+		log.info("l'entreprise"+entreprise);
+
 		try {
+			
 		if (entreprise.isPresent()) {
 			
 			entrepriseRepoistory.delete(entreprise.get());	
 		}
 		else {
-			log.info("N'existe pas");
+			log.warn("N'existe pas");
 		}
 		}
 		 catch(Exception e){
-			 log.info("Exception");
+			 log.error(e.toString());
 		    } 
 
 	
@@ -102,23 +108,27 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	@Transactional
 	public void deleteDepartementById(int id) {
 		Optional <Departement> departement = deptRepoistory.findById(id);
+		log.info("le departement"+departement);
+
 		try {
 		
          if (departement.isPresent()) {
          deptRepoistory.delete(departement.get());	
 		}
 		else {
-			log.info("N'existe pas");
+			log.warn("N'existe pas");
 		}
 		}
 		 catch(Exception e){
-			 log.info("Exception");
+			 log.error(e.toString());
 		    } 
 	}
 
 
 	public Entreprise getEntrepriseById(int id) {
 		Optional <Entreprise> entreprise = entrepriseRepoistory.findById(id);
+		log.info("l'entreprise"+entreprise);
+
 		try {
 			Entreprise entreprisee = null;
 		 if (entreprise.isPresent()) {
@@ -128,7 +138,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		 }
 		}
 		 catch(Exception e){
-			 log.info(e.toString());
+			 log.error(e.toString());
 		    } 
 
 		return null;
