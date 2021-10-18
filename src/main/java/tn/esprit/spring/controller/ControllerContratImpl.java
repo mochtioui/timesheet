@@ -6,20 +6,23 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import tn.esprit.spring.converts.ContractToModelConvert;
+import tn.esprit.spring.dto.ContratModel;
 import tn.esprit.spring.entities.Contrat;
-import tn.esprit.spring.services.IContratService;
+import tn.esprit.spring.services.ContratServiceImpl;
 
 @Controller
 public class ControllerContratImpl {
 	
 	@Autowired
-	IContratService icontractService;
+	ContratServiceImpl icontractService;
+	ContractToModelConvert contractToModelConvert;
 	
 	private static final Logger l = Logger.getLogger("contract service");
 	Class<?> enclosingClass = getClass().getEnclosingClass();
 
 	
-	public int ajouterContract(Contrat contrat) {
+	public int ajouterContract(ContratModel contrat) {
 		l.info("["+enclosingClass.getName()+"] add a new  contract");
 		icontractService.addContrat(contrat);
 		return contrat.getReference();
@@ -38,7 +41,7 @@ public class ControllerContratImpl {
 	}
 	public Contrat updateContrat(Contrat newContrat) {
 		l.info("["+enclosingClass.getName()+"] update contract");
-		return icontractService.updateContrat(newContrat.getReference(),newContrat);
+		return icontractService.updateContrat(newContrat.getReference(),contractToModelConvert.convert(newContrat));
 	}
 			
 

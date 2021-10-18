@@ -2,6 +2,7 @@ package tn.esprit.spring.services;
 
 import java.util.List;
 
+import tn.esprit.spring.dto.ContratModel;
 import tn.esprit.spring.entities.Contrat;
 
 
@@ -17,14 +18,14 @@ public interface IContratService {
 	 * @param contrat
 	 * @return
 	 */
-	public Contrat addContrat(Contrat contrat);
+	public Contrat addContrat(ContratModel contrat);
 	/**
 	 * 
 	 * @param idContrat
 	 * @param newContrat
 	 * @return
 	 */
-	public Contrat updateContrat(int idContrat, Contrat newContrat);
+	public Contrat updateContrat(int idContrat, ContratModel newContrat);
 	/**
 	 * 
 	 * @param idContrat

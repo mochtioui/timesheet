@@ -5,41 +5,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 
+import tn.esprit.spring.dto.ContratModel;
 import tn.esprit.spring.entities.Contrat;
-import tn.esprit.spring.entities.Entreprise;
-import tn.esprit.spring.services.IContratService;
+import tn.esprit.spring.services.ContratServiceImpl;
 
 @RestController
 public class RestControlContrat {
 
 	
 	@Autowired
-	IContratService icontractService;
+	ContratServiceImpl icontractService;
 	
 	private static final Logger l = Logger.getLogger("contract service");
 	Class<?> enclosingClass = getClass().getEnclosingClass();
 	
 	@PostMapping("/add")
 	@ResponseBody
-	public Contrat add(@RequestBody Contrat newContrat) {
-		l.info("["+enclosingClass.getName()+"] add a new  contract");
+	public Contrat add(@Valid ContratModel newContrat) {
+		l.info("[contract rest api] add a new  contract");
 		return icontractService.addContrat(newContrat);
 	}
     @PutMapping(value = "/update/{id}")
     @ResponseBody
-    public Contrat update(@PathVariable("id") int referenceContract,@RequestBody Contrat newContrat) 
+    public Contrat update(@PathVariable("id") int referenceContract,@Valid ContratModel newContrat) 
     {
-		l.info("["+enclosingClass.getName()+"] update  contract");
+		l.info("[contract rest api] update  contract");
     	return icontractService.updateContrat(referenceContract, newContrat);
     }
     @PutMapping(value = "/delete/{id}")
     @ResponseBody
     public boolean deleteContrat(@PathVariable("id") int referenceContract) {
-		l.info("["+enclosingClass.getName()+"] delete  contract");
+		l.info("[contract rest api] delete  contract");
     	return icontractService.deleteContrat(referenceContract);
     }
     
