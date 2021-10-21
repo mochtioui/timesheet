@@ -30,7 +30,7 @@ public class ControllerEmployeImpl  {
 	private String login; 
 	private String password; 
 	private Boolean loggedIn;
-	private String PathResponse = "/login.xhtml?faces-redirect=true";
+	private String pathResponse = "/login.xhtml?faces-redirect=true";
 
 	private Employe authenticatedUser = null; 
 	private String prenom; 
