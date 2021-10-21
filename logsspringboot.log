@@ -9122,3 +9122,14 @@ Unconditional classes:
 2021-10-21 22:46:41.617  INFO 10404 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-10-21 22:46:41.620  INFO 10404 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-10-21 22:46:41.684  INFO 10404 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-10-21 23:03:54.316  INFO 12112 --- [main] t.e.spring.TimesheetApplicationTests     : Starting TimesheetApplicationTests on Mickasa with PID 12112 (started by khaoula in C:\Users\khaoula\Desktop\5ème ANNEE\DevOps\timesheet)
+2021-10-21 23:03:54.356  INFO 12112 --- [main] t.e.spring.TimesheetApplicationTests     : No active profile set, falling back to default profiles: default
+2021-10-21 23:03:55.613  INFO 12112 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-10-21 23:03:55.800  INFO 12112 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 171ms. Found 6 repository interfaces.
+2021-10-21 23:03:56.559  INFO 12112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-21 23:03:57.001  INFO 12112 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-10-21 23:03:57.156  INFO 12112 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.8.Final}
+2021-10-21 23:03:57.503  INFO 12112 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-10-21 23:03:58.669  INFO 12112 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-21 23:03:59.422  INFO 12112 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-21 23:03:59.449  INFO 12112 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
