@@ -20,7 +20,7 @@ public class TimesheetApplicationTests    {
 IEmployeService  empService ;
 	
 	@Test
-	void contextLoads()  {
+	public void contextLoads()  {
 		boolean actif = true ;
 	Employe e = new Employe ("khaoula" , "khemiri" ,"khaoula.khmiri@esprit.tn" , "khaoula" , actif , Role.ADMINISTRATEUR) ;	
 		
