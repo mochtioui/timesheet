@@ -31,6 +31,8 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Autowired
 	TimesheetRepository timesheetRepository;
 
+
+       
 	@Override
 	public Employe authenticate(String login, String password) {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
@@ -44,7 +46,8 @@ public class EmployeServiceImpl implements IEmployeService {
 
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		Employe employe = employeRepository.findById(employeId).get();
+		
+		Employe employe = employeRepository.findById(employeId).get().orElse(Department::new);
 		employe.setEmail(email);
 		employeRepository.save(employe);
 
