@@ -44,7 +44,12 @@ public class EmployeServiceImpl implements IEmployeService {
 
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
+<<<<<<< Updated upstream
 		Employe employe = employeRepository.findById(employeId).get();
+=======
+		
+		Employe employe = employeRepository.findById(employeId).get().orElse(Employe::new);
+>>>>>>> Stashed changes
 		employe.setEmail(email);
 		employeRepository.save(employe);
 
