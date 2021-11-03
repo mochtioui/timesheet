@@ -8,14 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.converts.ContractToEntityConvert;
-import tn.esprit.spring.dto.ContratModel;
+import tn.esprit.spring.converts.ContratModel;
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.repository.ContratRepository;
 
 @Service
 public class ContratServiceImpl implements IContratService {
 	private static final Logger l = Logger.getLogger("contract repository");
-	Class<?> enclosingClass = getClass().getEnclosingClass();
 	
 	@Autowired
 	ContratRepository contratRepository;
@@ -26,7 +25,7 @@ public class ContratServiceImpl implements IContratService {
      * @Description Get All Contracts
      */
 	public List<Contrat> getAllContrats() {
-		l.info("["+enclosingClass.getName()+"] get all contract");
+		l.info("[ contract service ] get a contract contract");
 		return (List<Contrat>) contratRepository.findAll();
 		
 	}
@@ -36,7 +35,7 @@ public class ContratServiceImpl implements IContratService {
      */
 	
 	public Contrat addContrat(ContratModel contrat) {
-		l.info("["+enclosingClass.getName()+"] add a new  contract");		
+		l.info("[ contract service ] add a contract contract");
 		return contratRepository.save(contractToEntityConvert.convert(contrat));	
 	}
 	 /*
@@ -45,16 +44,16 @@ public class ContratServiceImpl implements IContratService {
      * @param idContraat id of the contract for updating
      */	
 	public Contrat updateContrat(int idContrat, ContratModel newContrat) {
-		l.info("["+enclosingClass.getName()+"] update contract");
+		l.info("[ contract service ] update a contract contract");
 		Optional<Contrat> conOptional=contratRepository.findById(idContrat);
 		if(conOptional.isPresent()) {
 			Contrat existContrat=conOptional.get();
-			existContrat.setDateDebut(newContrat.getDateDebut());
-			existContrat.setEmploye(newContrat.getEmploye());
-			existContrat.setReference(newContrat.getReference());
-			existContrat.setSalaire(newContrat.getSalaire());
-			existContrat.setTelephone(newContrat.getTelephone());
-			existContrat.setTypeContrat(newContrat.getTypeContrat());
+			existContrat.setDateDebut(newContrat.getStartDate());
+			existContrat.setEmploye(newContrat.getEmp());
+			existContrat.setReference(newContrat.getRef());
+			existContrat.setSalaire(newContrat.getSal());
+			existContrat.setTelephone(newContrat.getTel());
+			existContrat.setTypeContrat(newContrat.getType());
 			return contratRepository.save(existContrat);	
 		}
 		return null;
@@ -65,7 +64,7 @@ public class ContratServiceImpl implements IContratService {
      * @param idContrat : id of contrat
      */	
 	public boolean deleteContrat(int idContrat) {
-		l.info("["+enclosingClass.getName()+"] delete a contract contract");
+		l.info("[ contract service ] delete a contract contract");
 		if(contratRepository.findById(idContrat).isPresent()) {
 			contratRepository.deleteById(idContrat);
 			return true;
@@ -77,7 +76,7 @@ public class ContratServiceImpl implements IContratService {
      * @param idContrat : id of contrat
      */	
 	public Contrat getContratById(int id) {
-		l.info("["+enclosingClass.getName()+"] get contract by id");
+		l.info("[ contract service ] get a contract contract by id ");
 		Optional<Contrat> contractOptional=contratRepository.findById(id);
 		if(contractOptional.isPresent())
 			return contractOptional.get();

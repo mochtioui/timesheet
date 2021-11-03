@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.converts.ContractToEntityConvert;
+import tn.esprit.spring.converts.ContratModel;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Mission;
@@ -31,10 +32,9 @@ public class RestControlEmploye {
 	IEntrepriseService ientrepriseservice;
 	@Autowired
 	ITimesheetService itimesheetservice;
+	ContractToEntityConvert contractToEntityConvert;
 
-	
-	// http://localhost:8081/SpringMVC/servlet/ajouterEmployer
-	//{"id":1,"nom":"kallel", "prenom":"khaled", "email":"Khaled.kallel@ssiiconsulting.tn", "isActif":true, "role":"INGENIEUR"}
+
 	
 	@PostMapping("/ajouterEmployer")
 	@ResponseBody
@@ -48,13 +48,19 @@ public class RestControlEmploye {
 	@PutMapping(value = "/modifyEmail/{id}/{newemail}") 
 	@ResponseBody
 	public void mettreAjourEmailByEmployeId(@PathVariable("newemail") String email, @PathVariable("id") int employeId) {
-		iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
+		if((email != null) && (employeId != 0)) {
+			iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
+	
+		}
 		
 	}
 	// http://localhost:8081/SpringMVC/servlet/affecterEmployeADepartement/1/1
 	@PutMapping(value = "/affecterEmployeADepartement/{idemp}/{iddept}") 
 	public void affecterEmployeADepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId) {
-		iemployeservice.affecterEmployeADepartement(employeId, depId);
+		if(employeId != 0 && depId !=0) {
+			iemployeservice.affecterEmployeADepartement(employeId, depId);
+
+		}
 		
 	}
 	
@@ -62,23 +68,33 @@ public class RestControlEmploye {
 	@PutMapping(value = "/desaffecterEmployeDuDepartement/{idemp}/{iddept}") 
 	public void desaffecterEmployeDuDepartement(@PathVariable("idemp")int employeId, @PathVariable("iddept")int depId)
 	{
-		iemployeservice.desaffecterEmployeDuDepartement(employeId, depId);
+		if(employeId != 0 && depId != 0) {
+			iemployeservice.desaffecterEmployeDuDepartement(employeId, depId);
+
+		}
 	}
 
-	// http://localhost:8081/SpringMVC/servlet/ajouterContrat
-	//{"reference":6,"dateDebut":"2020-03-01","salaire":2000,"typeContrat":"CDD"}
+
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
-	public int ajouterContrat(@RequestBody Contrat contrat) {
-		iemployeservice.ajouterContrat(contrat);
-		return contrat.getReference();
+	public int ajouterContrat(@RequestBody ContratModel contrat) {
+		if(contrat != null) {
+			contractToEntityConvert=new ContractToEntityConvert();
+			iemployeservice.ajouterContrat(contractToEntityConvert.convert(contrat));
+			return 1;
+		}
+		return 0;
+
 	}
 	
 	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1
    @PutMapping(value = "/affecterContratAEmploye/{idcontrat}/{idemp}") 
 	public void affecterContratAEmploye(@PathVariable("idcontrat")int contratId, @PathVariable("idemp")int employeId)
 	{
-		iemployeservice.affecterContratAEmploye(contratId, employeId);
+	   if(contratId != 0 && employeId != 0) {
+			iemployeservice.affecterContratAEmploye(contratId, employeId);
+		   
+	   }
 	}
 
 	
@@ -102,7 +118,10 @@ public class RestControlEmploye {
     @DeleteMapping("/deleteContratById/{idcontrat}") 
 	@ResponseBody
 	public void deleteContratById(@PathVariable("idcontrat")int contratId) {
-		iemployeservice.deleteContratById(contratId);
+    	if(contratId != 0) {
+    		iemployeservice.deleteContratById(contratId);
+
+    	}
 	}
 
     

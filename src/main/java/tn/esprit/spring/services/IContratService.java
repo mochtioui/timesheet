@@ -2,7 +2,7 @@ package tn.esprit.spring.services;
 
 import java.util.List;
 
-import tn.esprit.spring.dto.ContratModel;
+import tn.esprit.spring.converts.ContratModel;
 import tn.esprit.spring.entities.Contrat;
 
 
