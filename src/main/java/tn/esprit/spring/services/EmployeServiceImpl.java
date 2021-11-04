@@ -31,6 +31,8 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Autowired
 	TimesheetRepository timesheetRepository;
 
+
+       
 	@Override
 	public Employe authenticate(String login, String password) {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
@@ -44,9 +46,12 @@ public class EmployeServiceImpl implements IEmployeService {
 
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
+		
+
 		Employe employe = employeRepository.findById(employeId).get();
 		employe.setEmail(email);
 		employeRepository.save(employe);
+	
 
 	}
 
@@ -65,7 +70,6 @@ public class EmployeServiceImpl implements IEmployeService {
 			depManagedEntity.getEmployes().add(employeManagedEntity);
 		}
 
-		// à ajouter? 
 		deptRepoistory.save(depManagedEntity); 
 
 	}
@@ -108,9 +112,7 @@ public class EmployeServiceImpl implements IEmployeService {
 	{
 		Employe employe = employeRepository.findById(employeId).get();
 
-		//Desaffecter l'employe de tous les departements
-		//c'est le bout master qui permet de mettre a jour
-		//la table d'association
+		
 		for(Departement dep : employe.getDepartements()){
 			dep.getEmployes().remove(employe);
 		}
