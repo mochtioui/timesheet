@@ -86,5 +86,13 @@ public class TimesheetApplicationTests    {
 
 	}
 	
+	@Test
+	public void testDesaffectEmployeeToADepartement()
+	{
+		empService.desaffecterEmployeDuDepartement(14, 1);
+		l.info("you have affected  an employee to a new departement  !");
+
+	}
+	
 
 }
