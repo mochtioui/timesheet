@@ -17,11 +17,9 @@ import tn.esprit.spring.entities.Entreprise;
 
 
 
-public class TimesheetApplicationTests extends AbstractTest  {
-	
-	
-	
-private static final Logger logger = LogManager.getLogger(EntrepriseTestApp.class);
+public class EntrepriseTestApp extends AbstractTest {
+
+	private static final Logger logger = LogManager.getLogger(EntrepriseTestApp.class);
 	
 	@Override
 	   @Before
@@ -173,5 +171,6 @@ private static final Logger logger = LogManager.getLogger(EntrepriseTestApp.clas
 	   
 	   
 	
-
+	   
+	
 }
