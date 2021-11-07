@@ -47,7 +47,7 @@ public class TimesheetApplicationTests    {
 	@Test
 	public void testAjoutEmploye() {
 		
-		Employe e = new Employe(false ,"mail", "test" ,"test" ,"test" , Role.CHEF_DEPARTEMENT);
+		Employe e = new Employe(false ,"khaoula.khmiri@esprit.tn", "test" ,"test" ,"test" , Role.CHEF_DEPARTEMENT);
 		empService.addOrUpdateEmploye(e);
 		logger.info("you have added " +e.getNom() +" as a new employee !");
 		logger.info("the employee you just added had  " +e.getId() +" as an ID  !");
