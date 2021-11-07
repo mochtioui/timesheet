@@ -32,8 +32,8 @@ public class EntrepriseTestApp extends AbstractTest {
 	      String uri = "/ajouterEntreprise";
 	      Entreprise entreprise = new Entreprise();
 	      entreprise.setId(2);;
-	      entreprise.setName("Ginger");
-	      entreprise.setRaisonSocial("Lac 2");
+	      entreprise.setName("Chtioui");
+	      entreprise.setRaisonSocial("Paris");
 	      String inputJson = super.mapToJson(entreprise);
 	      MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
 	         .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -59,7 +59,7 @@ public class EntrepriseTestApp extends AbstractTest {
 	      String uri = "/ajouterDepartement";
 	      Departement departement = new Departement();
 	      departement.setId(1);;
-	      departement.setName("Ginger");
+	      departement.setName("Info");
 	 
 	      String inputJson = super.mapToJson(departement);
 	      MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
