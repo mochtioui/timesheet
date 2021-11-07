@@ -138,7 +138,7 @@ public class TimesheetApplicationTests    {
 	
 		empcontract.affecterContratAEmploye(1,14);
 		
-		logger.debug("you have affected an employee to a contract ");
+		logger.debug("you have affectedd an employee to a contract ");
 
 
 
