@@ -47,7 +47,7 @@ public class RestControlEmploye {
 	@PutMapping(value = "/modifyEmail/{id}/{newemail}") 
 	@ResponseBody
 	public void mettreAjourEmailByEmployeId(@PathVariable("newemail") String email, @PathVariable("id") int employeId) {
-		iemployeservice.mettreAjourEmailByEmployeId(email, employeId);
+		iemployeservice.mettreAjourPasswordByEmployeId(email, employeId);
 		
 	}
 	// http://localhost:8081/SpringMVC/servlet/affecterEmployeADepartement/1/1
