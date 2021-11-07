@@ -49,8 +49,8 @@ public class TimesheetApplicationTests    {
 		
 		Employe e = new Employe(false ,"mail", "test" ,"test" ,"test" , Role.CHEF_DEPARTEMENT);
 		empService.addOrUpdateEmploye(e);
-		l.info("you have added " +e.getNom() +" as a new employee !");
-		l.info("the employee you just added had  " +e.getId() +" as an ID  !");
+		logger.info("you have added " +e.getNom() +" as a new employee !");
+		logger.info("the employee you just added had  " +e.getId() +" as an ID  !");
 
 		assertThat(e.getNom()).isEqualTo("test");
 		assertThat(e.getPassword()).isEqualTo("test");
@@ -66,7 +66,7 @@ public class TimesheetApplicationTests    {
 	/*@Test
 	public void testDeleteEmployee() {
 	     empService.deleteEmployeById(13);
-	l.info("you have deleted an employee  !");
+	logger.info("you have deleted an employee  !");
 
 
 	}*/
@@ -74,7 +74,7 @@ public class TimesheetApplicationTests    {
 	@Test
 	public void testUpdatePasswordEmployee() {
 	     empService.mettreAjourPasswordByEmployeId( "testpass",14);
-	l.info("you have updated  an employee's password  !");
+	logger.info("you have updated  an employee's password  !");
  
 
 	}
