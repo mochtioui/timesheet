@@ -32,10 +32,10 @@ public class TimesheetApplication {
 		return new ServletRegistrationBean(servlet, "*.jsf");
 	}
 
-	@Bean
+	/*@Bean
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
-	}
+	}*/
 
 	@Bean
 	public FilterRegistrationBean rewriteFilter() {
