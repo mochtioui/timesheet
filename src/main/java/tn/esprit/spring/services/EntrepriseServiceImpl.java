@@ -24,7 +24,10 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 	private static final Logger logger = LogManager.getLogger(EntrepriseServiceImpl.class);
 
 	public int ajouterEntreprise(Entreprise entreprise) {
+		logger.info("Je vais lancer la methode ajouterEntreprise");
+		
 		entrepriseRepoistory.save(entreprise);
+		logger.debug("Ajout d'une entreprise");
 		return entreprise.getId();
 	}
 
@@ -51,20 +54,46 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 			    } 
 }
 	
+	
+
+	/****chtioui */
 	public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
-		Entreprise entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId).get();
+		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
 		List<String> depNames = new ArrayList<>();
-		for(Departement dep : entrepriseManagedEntity.getDepartements()){
+		if(entrepriseManagedEntity.isPresent()) {
+		for(Departement dep : entrepriseManagedEntity.get().getDepartements()){
 			depNames.add(dep.getName());
 		}
 		
 		return depNames;
+		}
+		return null;
 	}
+
 
 	@Transactional
 	public void deleteEntrepriseById(int entrepriseId) {
-		entrepriseRepoistory.delete(entrepriseRepoistory.findById(entrepriseId).get());	
+		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
+		if(entrepriseManagedEntity.isPresent()) {
+			entrepriseRepoistory.delete(entrepriseManagedEntity.get());	
+		}
+		
 	}
+
+	public Entreprise getEntrepriseById(int entrepriseId) {
+		Optional <Entreprise> entrepriseManagedEntity = entrepriseRepoistory.findById(entrepriseId);
+		logger.info("Je vais lancer la methode getEntrepriseById");
+		
+		if(entrepriseManagedEntity.isPresent()) {
+			return entrepriseManagedEntity.get();	
+		}
+		logger.debug("Affichage d'un entreprise");
+
+		return null;
+	}
+	/**chtioui*/
+
+	
 
 	@Transactional
 	public void deleteDepartementById(int id) {
@@ -84,10 +113,8 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 			 logger.error("Erreur dans deleteDepartementById:"+e.toString());
 		    } 
 	}
-	public Entreprise getEntrepriseById(int entrepriseId) {
-		logger.info("Je vais lancer la methode getEntrepriseById");
-		logger.debug("Affichage d'un entreprise");
-		return entrepriseRepoistory.findById(entrepriseId).get();	
-	}
+	
+
+
 
 }
