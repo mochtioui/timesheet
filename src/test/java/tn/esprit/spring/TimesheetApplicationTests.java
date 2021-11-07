@@ -43,6 +43,58 @@ public class TimesheetApplicationTests {
 	    }
 	
 	@Test
+<
+	public void testAffectEmployeeToADepartement()
+	{
+		empService.affecterEmployeADepartement(14, 1);
+		logger.info("you have affected  an employee to a new departement  !");
+
+	}
+	
+	@Test
+	public void testDesaffectEmployeeToADepartement()
+	{
+		empService.desaffecterEmployeDuDepartement(14, 1);
+		logger.info("you have affected  an employee to a new departement  !");
+
+	}
+	
+	@Test
+	public void testAjoutContrat() {
+	String date ="31/12/2021";
+     Date date1 = null;
+	try {
+		date1 = simpleDateFormat.parse(date);
+	} catch (ParseException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+
+		Contrat e = new Contrat( date1 ,"CDI", 6000);
+		empcontract.ajouterContrat(e);
+		
+		assertThat(e.getTypeContrat()).isEqualTo("CDI");
+	assertThat(e.getSalaire()).isGreaterThan(3000);
+
+
+
+       
+	    }
+	
+	@Test
+	public void testAffecterEmployeeContrat() {
+	
+		empcontract.affecterContratAEmploye(1,14);
+		
+		logger.debug("you have affectedd an employee to a contract ");
+
+
+
+       
+	    }
+	
+
+
 	public void testAffectation() {
 	    	logger.info("Je vais lancer la methode testAffectation");
 	    	logger.debug("Affecter departement Dev à l'entreprise Consultant");
@@ -51,4 +103,5 @@ public class TimesheetApplicationTests {
 			ientrepriseservice.affecterDepartementAEntreprise(2, 1);
 			logger.info("Sortie de la méthode");
 		}
+
 }
