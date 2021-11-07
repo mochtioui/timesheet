@@ -21,6 +21,26 @@ public class TimesheetApplicationTests {
 
 	@Autowired
 	IEntrepriseService ientrepriseservice;
+ 
+	
+	@Autowired
+	ContratServiceImpl contratService;
+	
+	
+	@Test
+	public void testAjoutEmploye() {
+		
+		Employe e = new Employe(false ,"khaoula.khmiri@esprit.tn", "test" ,"test" ,"test" , Role.CHEF_DEPARTEMENT);
+		empService.addOrUpdateEmploye(e);
+		logger.info("you have added " +e.getNom() +" as a new employee !");
+		logger.info("the employee you just added had  " +e.getId() +" as an ID  !");
+
+		assertThat(e.getNom()).isEqualTo("test");
+		assertThat(e.getPassword()).isEqualTo("test");
+	assertThat(e.getId()).isGreaterThan(0);
+
+
+
 	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
 
 	@Test
@@ -43,7 +63,7 @@ public class TimesheetApplicationTests {
 	    }
 	
 	@Test
-<
+
 	public void testAffectEmployeeToADepartement()
 	{
 		empService.affecterEmployeADepartement(14, 1);
