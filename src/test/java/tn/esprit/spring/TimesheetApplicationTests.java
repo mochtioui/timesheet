@@ -99,7 +99,7 @@ public class TimesheetApplicationTests    {
 	@Test
 	public void testDeleteEmployee() {
 	     empService.deleteEmployeById(13);
-	logger.warning("you have deleted an employee  !");
+	logger.debug("you have deleted an employee  !");
 }
 	
 	@Test
