@@ -66,7 +66,7 @@ public class TimesheetApplicationTests    {
 	@Test
 	public void testDeleteEmployee() {
 	     empService.deleteEmployeById(13);
-	logger.info("you have deleted an employee  !");
+	logger.warning("you have deleted an employee  !");
 
 
 	}
