@@ -2,7 +2,10 @@ package tn.esprit.spring.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +21,13 @@ import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Mission;
 import tn.esprit.spring.entities.Timesheet;
+import tn.esprit.spring.repository.ContratRepository;
+import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
-import tn.esprit.spring.converts.ContractToEntityConvert;
 import tn.esprit.spring.converts.ContractToModelConvert;
+import tn.esprit.spring.converts.ContractToEntityConvert;
 import tn.esprit.spring.dto.ContratModel;
 
 
@@ -140,13 +145,7 @@ public class RestControlEmploye {
 		}
 	}
     
-    // URL : http://localhost:8081/SpringMVC/servlet/getNombreEmployeJPQL
-    @GetMapping(value = "getNombreEmployeJPQL")
-    @ResponseBody
-	public int getNombreEmployeJPQL() {
-		
-		return iemployeservice.getNombreEmployeJPQL();
-	}
+
 
     // URL : http://localhost:8081/SpringMVC/servlet/getAllEmployeNamesJPQL
     @GetMapping(value = "getAllEmployeNamesJPQL")
@@ -180,7 +179,7 @@ public class RestControlEmploye {
 		l.info("delete all contract");
 		return iemployeservice.getNombreEmployeJPQL();
 		
-
+    }
     // URL : http://localhost:8081/SpringMVC/servlet/getSalaireByEmployeIdJPQL/2
     @GetMapping(value = "getSalaireByEmployeIdJPQL/{idemp}")
     @ResponseBody

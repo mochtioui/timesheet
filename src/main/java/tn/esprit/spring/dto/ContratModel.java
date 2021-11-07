@@ -1,86 +1,105 @@
-package tn.esprit.spring.services;
+package tn.esprit.spring.dto;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Date;
+import tn.esprit.spring.entities.Employe;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+/**
+ * 
+ * @author Ibrahim
+ * @description contract model class to avoid dto 
+ *
+ */
+public class ContratModel {
 
-import tn.esprit.spring.entities.Contrat;
-import tn.esprit.spring.repository.ContratRepository;
 
-@Service
-public class ContratServiceImpl implements IContratService {
-	
    /**
-    * @description parameter in class service
+    * @description attribute of contract model    
     */
+	private int ref;	
+	private Date startDate;
+	private  String type;
+	private float tel;
+	private Employe emp;
+	private float sal;
 
-	@Autowired
-	ContratRepository contratRepository;
-	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
+	/**
+	 * @description getters and setters
+	 */
+	public int getRef() {
+		return ref;
+	}
 
-    /**
-     * @description get all contracts
-     * @return List<Contrat> 
-     */
-	public List<Contrat> getAllContrats() {
-		l.info("get all contract");
-		return (List<Contrat>) contratRepository.findAll();
+	public void setRef(int ref) {
+		this.ref = ref;
 	}
-    /**
-     * @description add new contract
-     * @param contrat
-     * @return Contract 
-     */
-	public Contrat addContrat(Contrat contrat)
-	{
-		l.info("contract saved");
-		return contratRepository.save(contrat); 
-		
+
+	public Date getStartDate() {
+		return startDate;
 	}
-    /**
-     * @description update contract
-     * @param contrat
-     * @return Contract 
-     */
-	public Contrat updateContrat(Contrat con) {
-		// TODO Auto-generated method stub
-		l.info("contract updated");
-		return contratRepository.save(con);
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public float getTel() {
+		return tel;
+	}
+
+	public void setTel(float tel) {
+		this.tel = tel;
+	}
+
+	public Employe getEmp() {
+		return emp;
+	}
+
+	public void setEmp(Employe emp) {
+		this.emp = emp;
+	}
+
+	public float getSal() {
+		return sal;
+	}
+
+	public void setSal(float sal) {
+		this.sal = sal;
+	}
+	public ContratModel() {
+		super();
+	}
+
+   /**
+    * @desciption constructors
+    */
+	public ContratModel(int ref, Date startDate, String type, float tel, Employe emp, float sal) {
+		super();
+		this.ref = ref;
+		this.startDate = startDate;
+		this.type = type;
+		this.tel = tel;
+		this.emp = emp;
+		this.sal = sal;
+	}
+
+	public ContratModel(Date startDate, String type, float tel, Employe emp, float sal) {
+		super();
+		this.startDate = startDate;
+		this.type = type;
+		this.tel = tel;
+		this.emp = emp;
+		this.sal = sal;
+	}
+
+
+
+
 	
-    /**
-     * @description get one  contract
-     * @param id
-     * @return Contract 
-     */
-	public Contrat getContrat(String id) {
-		l.info("get contrat with  id = " + id);
-		Contrat e =  contratRepository.findById(Integer.parseInt(id)).orElse(null);
-		l.info("contrat returned : " + e);
-		return e; 
-	
-
-	}
-    	
-    /**
-     * @description remove contract
-     * @param idContrat
-     * @return Contract 
-     */
-	public void remove(String idContrat)
-	{
-		l.info("attempt to remove contrat with  id = " + idContrat);
-
-		if ( ! contratRepository.findById(Integer.parseInt(idContrat)).equals(Optional.empty()) ){
-			contratRepository.deleteById(Integer.parseInt(idContrat));
-			l.info("contrat with  id = " + idContrat+" removed");
-
-		}
-		
-	}
-
 }
