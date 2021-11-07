@@ -21,6 +21,10 @@ import tn.esprit.spring.entities.Timesheet;
 import tn.esprit.spring.services.IEmployeService;
 import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.services.ITimesheetService;
+import tn.esprit.spring.converts.ContractToEntityConvert;
+import tn.esprit.spring.converts.ContractToModelConvert;
+import tn.esprit.spring.dto.ContratModel;
+
 
 @RestController
 public class RestControlEmploye {
@@ -31,6 +35,16 @@ public class RestControlEmploye {
 	IEntrepriseService ientrepriseservice;
 	@Autowired
 	ITimesheetService itimesheetservice;
+
+		@Autowired
+	EmployeRepository employeRepository;
+	
+	@Autowired
+	ContratRepository contratRepository;
+	
+	ContractToEntityConvert contractToEntityConvert=new ContractToEntityConvert();
+	ContractToModelConvert contractToModelConvert=new ContractToModelConvert();
+	private static final Logger l = LogManager.getLogger(RestControlEmploye.class);
 
 	
 
@@ -67,16 +81,29 @@ public class RestControlEmploye {
 	
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
-	public int ajouterContrat(@RequestBody Contrat contrat) {
-		iemployeservice.ajouterContrat(contrat);
-		return contrat.getReference();
+	public int ajouterContrat(@RequestBody ContratModel contrat) {
+		iemployeservice.ajouterContrat(contractToEntityConvert.convert(contrat));
+		l.info("contract added successfully");
+		return contrat.getRef();
 	}
 	
-	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1
-   @PutMapping(value = "/affecterContratAEmploye/{idcontrat}/{idemp}") 
+  @PutMapping(value = "/affecterContratAEmploye/{idcontrat}/{idemp}") 
 	public void affecterContratAEmploye(@PathVariable("idcontrat")int contratId, @PathVariable("idemp")int employeId)
 	{
-		iemployeservice.affecterContratAEmploye(contratId, employeId);
+		l.info("affect employ a contract ");
+		l.info("je chercher l'empoyer ");
+		Optional<Employe> emp = employeRepository.findById(employeId);
+		Optional<Contrat> con= contratRepository.findById(contratId);
+		if(emp.isPresent() && con.isPresent()) {
+			iemployeservice.affecterContratAEmploye(contratId, employeId);
+
+		}
+		else {
+			l.info("something wrong  ");
+
+		}
+		l.info(contratId+" contract affected to employe "+employeId);
+
 	}
 
 	
@@ -96,13 +123,22 @@ public class RestControlEmploye {
 		
 	}
     
- // URL : http://localhost:8081/SpringMVC/servlet/deleteContratById/2
     @DeleteMapping("/deleteContratById/{idcontrat}") 
 	@ResponseBody
 	public void deleteContratById(@PathVariable("idcontrat")int contratId) {
-		iemployeservice.deleteContratById(contratId);
-	}
+    	l.info("delete employer ");
+		Optional<Contrat> con= contratRepository.findById(contratId);
+		if(con.isPresent()) {
+			l.info("delete contract success");
+			iemployeservice.deleteContratById(contratId);
 
+		}
+		
+		else {
+			l.info("something wrong");
+
+		}
+	}
     
     // URL : http://localhost:8081/SpringMVC/servlet/getNombreEmployeJPQL
     @GetMapping(value = "getNombreEmployeJPQL")
@@ -136,13 +172,14 @@ public class RestControlEmploye {
 		
 	}
 
-    // URL : http://localhost:8081/SpringMVC/servlet/deleteAllContratJPQL
-    @DeleteMapping("/deleteAllContratJPQL") 
-	@ResponseBody
-	public void deleteAllContratJPQL() {
-		iemployeservice.deleteAllContratJPQL();
+     
+    // URL : http://localhost:8081/SpringMVC/servlet/getNombreEmployeJPQL
+    @GetMapping(value = "getNombreEmployeJPQL")
+    @ResponseBody
+	public int getNombreEmployeJPQL() {
+		l.info("delete all contract");
+		return iemployeservice.getNombreEmployeJPQL();
 		
-	}
 
     // URL : http://localhost:8081/SpringMVC/servlet/getSalaireByEmployeIdJPQL/2
     @GetMapping(value = "getSalaireByEmployeIdJPQL/{idemp}")

@@ -10,11 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Pattern;
+
+
+/**
+ * 
+ * @author Ibrahim
+ *
+ */
 
 @Entity
 public class Contrat implements Serializable {
-	
+	/**
+	 * @description all attribute of contract
+	 */
 	private static final long serialVersionUID = 6191889143079517027L;
 
 	@Id
@@ -29,22 +37,25 @@ public class Contrat implements Serializable {
 	
 	private float telephone;
 	
+   /**
+    * 
+    * @description all getters and setters
+    */
+
+	public float getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(float telephone) {
+		this.telephone = telephone;
+	}
+
 	@OneToOne
 	private Employe employe;
 
-	private int salaire;
+	private float salaire;
 
-	public Contrat() {
-		super();
-	}
 	
-	public Contrat(Date dateDebut, String typeContrat, int salaire) {
-		this.dateDebut = dateDebut;
-		this.typeContrat = typeContrat;
-		this.salaire = salaire;
-	}
-
-
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -73,7 +84,7 @@ public class Contrat implements Serializable {
 		return salaire;
 	}
 
-	public void setSalaire(int salaire) {
+	public void setSalaire(float salaire) {
 		this.salaire = salaire;
 	}
 
@@ -84,6 +95,49 @@ public class Contrat implements Serializable {
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
 	}
+    /**
+     * @description all constructors	
+     */
+	
+	public Contrat() {
+		super();
+	}
+	
+	public Contrat(Date dateDebut, String typeContrat, float salaire) {
+		this.dateDebut = dateDebut;
+		this.typeContrat = typeContrat;
+		this.salaire = salaire;
+	}
+	
+	public Contrat(int id , Date dateDebut, String typeContrat, float salaire) {
+		this.reference = id ; 
+		this.dateDebut = dateDebut;
+		this.typeContrat = typeContrat;
+		this.salaire = salaire;
+	}
+	
+
+
+
+	public Contrat(Date dateDebut, String typeContrat, float telephone, Employe employe, float salaire) {
+		super();
+		this.dateDebut = dateDebut;
+		this.typeContrat = typeContrat;
+		this.telephone = telephone;
+		this.employe = employe;
+		this.salaire = salaire;
+	}
+
+	public Contrat(int reference, Date dateDebut, String typeContrat, float telephone, Employe employe, float salaire) {
+		super();
+		this.reference = reference;
+		this.dateDebut = dateDebut;
+		this.typeContrat = typeContrat;
+		this.telephone = telephone;
+		this.employe = employe;
+		this.salaire = salaire;
+	}
+
 	
 	
 }
