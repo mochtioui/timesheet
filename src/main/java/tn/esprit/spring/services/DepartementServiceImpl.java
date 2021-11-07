@@ -16,12 +16,12 @@ public class DepartementServiceImpl implements IDepartementService {
 	@Autowired
 	DepartementRepository deptRepoistory;
 
-	private static final Logger log = LogManager.getLogger(DepartementServiceImpl.class);
+	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
 
 	public List<Departement> getAllDepartements() {
-		
+		logger.info("Je vais lancer la methode getAllDepartements");
 		List<Departement> dep = (List<Departement>) deptRepoistory.findAll();
-		log.info(dep);
+		logger.debug("L'affichage des Departements");
 		return (List<Departement>) deptRepoistory.findAll();
 	}
 
