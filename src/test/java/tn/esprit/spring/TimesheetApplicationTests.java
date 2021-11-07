@@ -28,7 +28,7 @@ import tn.esprit.spring.services.IEntrepriseService;
 @SpringBootTest
 public class TimesheetApplicationTests    {
 
-	private static final Logger l = LogManager.getLogger(TimesheetApplicationTests.class);
+	private static final Logger logger = LogManager.getLogger(TimesheetApplicationTests.class);
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	@Autowired
@@ -99,17 +99,17 @@ public class TimesheetApplicationTests    {
 	public void testAffectEmployeeToADepartement()
 	{
 		empService.affecterEmployeADepartement(14, 1);
-		l.info("you have affected  an employee to a new departement  !");
+		logger.info("you have affected  an employee to a new departement  !");
 
 	}
 	
-	/*@Test
+	@Test
 	public void testDesaffectEmployeeToADepartement()
 	{
 		empService.desaffecterEmployeDuDepartement(14, 1);
-		l.info("you have affected  an employee to a new departement  !");
+		logger.info("you have affected  an employee to a new departement  !");
 
-	}*/
+	}
 	
 	@Test
 	public void testAjoutContrat() {
@@ -138,7 +138,7 @@ public class TimesheetApplicationTests    {
 	
 		empcontract.affecterContratAEmploye(1,14);
 		
-		l.debug("you have affected an employee to a contract ");
+		logger.debug("you have affected an employee to a contract ");
 
 
 
