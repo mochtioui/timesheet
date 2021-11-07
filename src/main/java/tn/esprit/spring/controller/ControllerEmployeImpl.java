@@ -76,7 +76,7 @@ public class ControllerEmployeImpl  {
 
 		if (authenticatedUser==null || !loggedIn) return response;
 
-		employeService.addOrUpdateEmploye(new Employe(nom, prenom, email, password, actif, role)); 
+		employeService.addOrUpdateEmploye(new Employe( actif , nom, prenom, email, password, role)); 
 		return "null"; 
 	}  
 
