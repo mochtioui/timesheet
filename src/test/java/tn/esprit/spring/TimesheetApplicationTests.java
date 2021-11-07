@@ -29,6 +29,7 @@ public class TimesheetApplicationTests    {
 		
 		Employe e = new Employe(false ,"mail", "test" ,"test" ,"test" , Role.CHEF_DEPARTEMENT);
 		empService.addOrUpdateEmploye(e);
+		l.info("you have added " +e.getNom() +" as a new employer !");
 		assertThat(e.getNom()).isEqualTo("test");
 		assertThat(e.getPassword()).isEqualTo("test");
 	assertThat(e.getId()).isGreaterThan(0);
@@ -42,11 +43,9 @@ public class TimesheetApplicationTests    {
 	@Test
 	public void testDeleteProduct() {
 	     empService.deleteEmployeById(13);
-	     
-	     
-	   
-	     
-	     
+	l.info("you have deleted an employer  !");
+
+
 	}
 
 }
