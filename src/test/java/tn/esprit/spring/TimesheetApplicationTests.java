@@ -39,6 +39,14 @@ public class TimesheetApplicationTests    {
 	    }
 	
 	
-	
+	@Test
+	public void testDeleteProduct() {
+	     empService.deleteEmployeById(13);
+	     
+	     
+	   
+	     
+	     
+	}
 
 }
