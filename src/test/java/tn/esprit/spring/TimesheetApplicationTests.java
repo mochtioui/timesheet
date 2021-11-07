@@ -20,7 +20,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.services.DepartementServiceImpl;
+import tn.esprit.spring.services.IEntrepriseService;
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.services.IEntrepriseService;
@@ -43,6 +46,38 @@ public class TimesheetApplicationTests    {
 	@Autowired
 	ContratServiceImpl contratService;
 	
+	@Autowired
+	IEntrepriseService ientrepriseservice;
+	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
+
+	@Test
+	public void testAjoutEntrepriseDep() {
+		logger.info("Je vais lancer la methode getAllDepartements");
+		Entreprise e = new Entreprise(" Consulting", "Cite El Ghazela");
+		logger.debug("L'ajoute d'un Entreprise");
+		ientrepriseservice.ajouterEntreprise(e);
+        Departement department = new Departement();
+		
+		department.setName("Dev");
+		logger.debug("L'ajoute d'un Departement 1");
+		ientrepriseservice.ajouterDepartement(department);
+		
+		Departement department1 = new Departement();
+		department1.setName("HR");
+		logger.debug("L'ajoute d'un Departement 2");
+		ientrepriseservice.ajouterDepartement(department1);
+		logger.info("Sortie de la méthode");
+	    }
+	
+	@Test
+	public void testAffectation() {
+	    	logger.info("Je vais lancer la methode testAffectation");
+	    	logger.debug("Affecter departement Dev à l'entreprise Consultant");
+			ientrepriseservice.affecterDepartementAEntreprise(1, 1);
+			logger.debug("Affecter departement HR à l'entreprise Consultant");
+			ientrepriseservice.affecterDepartementAEntreprise(2, 1);
+			logger.info("Sortie de la méthode");
+		}
 	
 	@Test
 	public void testAjoutEmploye() {
