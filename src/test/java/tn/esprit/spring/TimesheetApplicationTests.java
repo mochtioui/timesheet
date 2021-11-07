@@ -35,19 +35,16 @@ public class TimesheetApplicationTests    {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	@Autowired
-
-      IEmployeService  empService ;
+    IEmployeService  empService ;
 	@Autowired
-
     EmployeServiceImpl  empcontract ;
-	@Autowired
+    @Autowired
+	ContratServiceImpl contratService;
+
+
+		@Autowired
 	IEntrepriseService ientrepriseservice;
 	
-	@Autowired
-	ContratServiceImpl contratService;
-	@Autowired
-	IEntrepriseService ientrepriseservice;
-	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
 	
 	@Test
 	public void testAjoutEmploye() {
