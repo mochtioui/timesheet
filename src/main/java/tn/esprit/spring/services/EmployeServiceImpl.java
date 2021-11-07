@@ -45,11 +45,11 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 
-	public void mettreAjourEmailByEmployeId(String email, int employeId) {
+	public void mettreAjourPasswordByEmployeId(String password, int employeId) {
 		//testing the ngrok
 
 		Employe employe = employeRepository.findById(employeId).get();
-		employe.setEmail(email);
+		employe.setPassword(password);
 		employeRepository.save(employe);
 	
 

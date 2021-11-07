@@ -165,7 +165,7 @@ public class ControllerEmployeImpl  {
 	}
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		employeService.mettreAjourEmailByEmployeId(email, employeId);
+		employeService.mettreAjourPasswordByEmployeId(email, employeId);
 
 	}
 
