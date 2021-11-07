@@ -41,7 +41,20 @@ public class TimesheetApplicationTests {
 
 
 
+<<<<<<< Updated upstream
 	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
+=======
+       
+	    }
+	
+	
+	
+	@Test
+	public void testDeleteEmployee() {
+	     empService.deleteEmployeById(13);
+	logger.info("you have deleted an employee  !");
+
+>>>>>>> Stashed changes
 
 	@Test
 	public void testAjoutEntrepriseDep() {
