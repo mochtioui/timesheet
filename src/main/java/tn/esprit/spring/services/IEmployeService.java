@@ -15,7 +15,7 @@ public interface IEmployeService {
 	public Employe authenticate(String login, String password) ;
 	 
 	
-	public void mettreAjourEmailByEmployeId(String email, int employeId);
+	public void mettreAjourPasswordByEmployeId(String password, int employeId);
 	public void affecterEmployeADepartement(int employeId, int depId);
 	public void desaffecterEmployeDuDepartement(int employeId, int depId);
 	public int ajouterContrat(Contrat contrat);
@@ -34,7 +34,7 @@ public interface IEmployeService {
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, 
 	Date dateDebut, Date dateFin);
 
-	int addOrUpdateEmploye(Employe employe);
+int addOrUpdateEmploye(Employe employe);
 	
 	
 	

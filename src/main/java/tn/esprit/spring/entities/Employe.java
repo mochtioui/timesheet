@@ -31,8 +31,7 @@ public class Employe implements Serializable {
 	
 	private String nom;
 	
-	//@Column(unique=true)
-	//@Pattern(regex=".+\@.+\..+")
+	
 	private String email;
 
 	private String password;
@@ -78,7 +77,7 @@ public class Employe implements Serializable {
 
 
 
-	public Employe(String nom, String prenom, String email, String password, boolean actif, Role role) {
+	public Employe( boolean actif , String mail, String nom, String password, String prenom, Role role) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
