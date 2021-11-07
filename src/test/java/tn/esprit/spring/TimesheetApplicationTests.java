@@ -99,7 +99,7 @@ public class TimesheetApplicationTests    {
 	@Test
 	public void testDeleteEmployee() {
 	     empService.deleteEmployeById(13);
-	logger.debug("you have deleted an employee  !");
+	logger.warn("you have deleted an employee  !");
 }
 	
 	@Test
@@ -133,7 +133,7 @@ public class TimesheetApplicationTests    {
 	try {
 		date1 = simpleDateFormat.parse(date);
 	} catch (ParseException e1) {
-		// TODO Auto-generated catch block
+		
 		e1.printStackTrace();
 	}
 
