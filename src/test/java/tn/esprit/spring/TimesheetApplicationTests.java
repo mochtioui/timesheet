@@ -45,7 +45,9 @@ public class TimesheetApplicationTests    {
 	
 	@Autowired
 	ContratServiceImpl contratService;
-	
+	@Autowired
+	IEntrepriseService ientrepriseservice;
+	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
 	
 	@Test
 	public void testAjoutEmploye() {
@@ -54,27 +56,15 @@ public class TimesheetApplicationTests    {
 		empService.addOrUpdateEmploye(e);
 		logger.info("you have added " +e.getNom() +" as a new employee !");
 		logger.info("the employee you just added had  " +e.getId() +" as an ID  !");
-
 		assertThat(e.getNom()).isEqualTo("test");
 		assertThat(e.getPassword()).isEqualTo("test");
 	assertThat(e.getId()).isGreaterThan(0);
 
-
-
-
-	@Autowired
-	IEntrepriseService ientrepriseservice;
-	private static final Logger logger = LogManager.getLogger(DepartementServiceImpl.class);
-       
-	    }
+ }
 	
 	
 	
-	@Test
-	public void testDeleteEmployee() {
-	     empService.deleteEmployeById(13);
-	logger.info("you have deleted an employee  !");
-
+	
 
 	@Test
 	public void testAjoutEntrepriseDep() {
@@ -136,9 +126,7 @@ public class TimesheetApplicationTests    {
 	public void testUpdatePasswordEmployee() {
 	     empService.mettreAjourPasswordByEmployeId( "testpass",14);
 	logger.info("you have updated  an employee's password  !");
- 
-
-	}
+}
 	
 	
 	
@@ -175,10 +163,7 @@ public class TimesheetApplicationTests    {
 		assertThat(e.getTypeContrat()).isEqualTo("CDI");
 	assertThat(e.getSalaire()).isGreaterThan(3000);
 
-
-
-       
-	    }
+}
 	
 	@Test
 	public void testAffecterEmployeeContrat() {
@@ -186,11 +171,7 @@ public class TimesheetApplicationTests    {
 		empcontract.affecterContratAEmploye(1,14);
 		
 		logger.debug("you have affected an employee to a contract ");
-
-
-
-       
-	    }
+  }
 	
 
 }
