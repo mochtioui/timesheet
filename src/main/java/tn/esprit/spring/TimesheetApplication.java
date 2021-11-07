@@ -22,12 +22,15 @@ import tn.esprit.spring.config.LoginFilter;
 @EnableAutoConfiguration
 public class TimesheetApplication {
 
-	public static void main(String[] args) {SpringApplication.run(TimesheetApplication.class, args);}
+	public static void main(String[] args) {
+		SpringApplication.run(TimesheetApplication.class, args);
+	}
 
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean() {
 		FacesServlet servlet = new FacesServlet();
-		return new ServletRegistrationBean(servlet, "*.jsf"); }
+		return new ServletRegistrationBean(servlet, "*.jsf");
+	}
 
 	@Bean
 	public ModelMapper modelMapper() {
@@ -37,11 +40,11 @@ public class TimesheetApplication {
 	@Bean
 	public FilterRegistrationBean rewriteFilter() {
 		FilterRegistrationBean rwFilter = new FilterRegistrationBean(new RewriteFilter());
-		rwFilter.setDispatcherTypes(EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ASYNC, DispatcherType.ERROR));
+		rwFilter.setDispatcherTypes(
+				EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ASYNC, DispatcherType.ERROR));
 		rwFilter.addUrlPatterns("/*");
 		return rwFilter;
 	}
-
 
 	@Bean
 	public FilterRegistrationBean loginFilter() {
@@ -50,5 +53,5 @@ public class TimesheetApplication {
 		registration.setFilter(new LoginFilter());
 		return registration;
 	}
- 
+
 }
