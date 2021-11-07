@@ -42,7 +42,7 @@ public class TimesheetApplicationTests    {
 	ContratServiceImpl contratService;
 
 
-		@Autowired
+	@Autowired
 	IEntrepriseService ientrepriseservice;
 	
 	
@@ -92,22 +92,7 @@ public class TimesheetApplicationTests    {
 			logger.info("Sortie de la méthode");
 		}
 	
-	@Test
-	public void testAjoutEmploye() {
-		
-		Employe e = new Employe(false ,"mail", "test" ,"test" ,"test" , Role.CHEF_DEPARTEMENT);
-		empService.addOrUpdateEmploye(e);
-		logger.info("you have added " +e.getNom() +" as a new employee !");
-		logger.info("the employee you just added had  " +e.getId() +" as an ID  !");
-
-		assertThat(e.getNom()).isEqualTo("test");
-		assertThat(e.getPassword()).isEqualTo("test");
-	assertThat(e.getId()).isGreaterThan(0);
-
-
-
-       
-	    }
+	
 	
 	
 	
@@ -115,9 +100,7 @@ public class TimesheetApplicationTests    {
 	public void testDeleteEmployee() {
 	     empService.deleteEmployeById(13);
 	logger.warning("you have deleted an employee  !");
-
-
-	}
+}
 	
 	@Test
 	public void testUpdatePasswordEmployee() {
