@@ -133,5 +133,17 @@ public class TimesheetApplicationTests    {
        
 	    }
 	
+	@Test
+	public void testAffecterEmployeeContrat() {
+	
+		empcontract.affecterContratAEmploye(1,14);
+		
+		l.debug("you have affected an employee to a contract ");
+
+
+
+       
+	    }
+	
 
 }
