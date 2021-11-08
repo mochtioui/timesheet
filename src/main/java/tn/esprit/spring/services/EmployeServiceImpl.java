@@ -85,17 +85,20 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 	@Transactional
 	public void desaffecterEmployeDuDepartement(int employeId, int depId)
 	{
-		Departement dep = deptRepoistory.findById(depId).get();
+		Optional<Departement> depManagedEntity= deptRepoistory.findById(depId);
+		l.info(depManagedEntity);
+		if(depManagedEntity.isPresent() ) {
 
-		int employeNb = dep.getEmployes().size();
+		int employeNb = depManagedEntity.get().getEmployes().size();
 		for(int index = 0; index < employeNb; index++){
-			if(dep.getEmployes().get(index).getId() == employeId){
-				dep.getEmployes().remove(index);
+			if(depManagedEntity.get().getEmployes().get(index).getId() == employeId){
+				depManagedEntity.get().getEmployes().remove(index);
 				break;//a revoir
 			}
 		}
+		}
 	} 
-	// Tablesapce (espace disque) 
+	
 
 	public int ajouterContrat(Contrat contrat) {
 		contratRepoistory.save(contrat);
@@ -112,8 +115,14 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 	}
 
 	public String getEmployePrenomById(int employeId) {
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-		return employeManagedEntity.getPrenom();
+		Optional <Employe> employeManagedEntity = employeRepository.findById(employeId);
+		if(employeManagedEntity.isPresent()) 
+		{
+		return employeManagedEntity.get().getPrenom();
+		}
+		else return "name has been added";
+		
+		
 	}
 	 
 	public void deleteEmployeById(int employeId)
