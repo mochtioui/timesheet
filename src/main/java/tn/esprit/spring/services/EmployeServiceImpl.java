@@ -1,5 +1,6 @@
 package tn.esprit.spring.services;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,20 +67,24 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 
 	@Transactional	
 	public void affecterEmployeADepartement(int employeId, int depId) {
-		Departement depManagedEntity = deptRepoistory.findById(depId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+		
+		
+		Optional<Departement> depManagedEntity= deptRepoistory.findById(depId);
+		Optional<Employe> employeManagedEntity= employeRepository.findById(employeId);
 
-		if(depManagedEntity.getEmployes() == null){
+		if(depManagedEntity.isPresent() && employeManagedEntity.isPresent()) {
+		if(depManagedEntity.get().getEmployes() == null){
 
 			List<Employe> employes = new ArrayList<>();
-			employes.add(employeManagedEntity);
-			depManagedEntity.setEmployes(employes);
+			employes.add(employeManagedEntity.get());
+			depManagedEntity.get().setEmployes(employes);
 		}else{
 
-			depManagedEntity.getEmployes().add(employeManagedEntity);
+			depManagedEntity.get().getEmployes().add(employeManagedEntity.get());
 		}
 
-		deptRepoistory.save(depManagedEntity); 
+		deptRepoistory.save(depManagedEntity.get()); 
+		}
 
 	}
 	@Transactional
@@ -106,11 +111,15 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 	}
 
 	public void affecterContratAEmploye(int contratId, int employeId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+		
+		Optional<Contrat> con= contratRepoistory.findById(contratId);
+		Optional<Employe> emp= employeRepository.findById(employeId);
 
-		contratManagedEntity.setEmploye(employeManagedEntity);
-		contratRepoistory.save(contratManagedEntity);
+		if(emp.isPresent() && con.isPresent()) 
+		{
+		con.get().setEmploye(emp.get());
+		contratRepoistory.save(con.get());
+		}
 
 	}
 
@@ -127,19 +136,22 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 	 
 	public void deleteEmployeById(int employeId)
 	{
-		Employe employe = employeRepository.findById(employeId).get();
+		Optional<Employe> emp= employeRepository.findById(employeId);
 
-		
-		for(Departement dep : employe.getDepartements()){
-			dep.getEmployes().remove(employe);
+		if(emp.isPresent()) {
+		for(Departement dep : emp.get().getDepartements()){
+			dep.getEmployes().remove(emp.get());
 		}
 
-		employeRepository.delete(employe);
+		employeRepository.delete(emp.get());
+		}
 	}
 
 	public void deleteContratById(int contratId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		contratRepoistory.delete(contratManagedEntity);
+		Optional<Contrat> con= contratRepoistory.findById(contratId);
+		if(con.isPresent()) {
+		contratRepoistory.delete(con.get());
+		}
 
 	}
 
