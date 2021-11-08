@@ -3,6 +3,7 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,11 @@ import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.repository.TimesheetRepository;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 @Service
 public class EmployeServiceImpl implements IEmployeService {
+	private static final Logger l = LogManager.getLogger(EmployeServiceImpl.class);
 
 	@Autowired
 	EmployeRepository employeRepository;
@@ -47,10 +50,17 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public void mettreAjourPasswordByEmployeId(String password, int employeId) {
 		//testing the ngrok
-
+Optional<Employe> emp= employeRepository.findById(employeId);
+		if(emp.isPresent()) {
 		Employe employe = employeRepository.findById(employeId).get();
 		employe.setPassword(password);
 		employeRepository.save(employe);
+		}
+		else 
+		{
+			l.warn("something is wrong");
+			
+		}
 	
 
 	}
