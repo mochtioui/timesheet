@@ -47,7 +47,7 @@ public class ContratServiceImpl implements IContratService {
      * @return Contract 
      */
 	public Contrat updateContrat(Contrat con) {
-		// TODO Auto-generated method stub
+		
 		l.info("contract updated");
 		return contratRepository.save(con);
 	}
