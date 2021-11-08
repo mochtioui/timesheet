@@ -138,8 +138,6 @@ public class ControllerEmployeImpl  {
 	} 
 
 
-	// getters and setters 
-
 	public IEmployeService getEmployeService() {
 		return employeService;
 	}

@@ -49,7 +49,6 @@ public class EmployeServiceImpl implements IEmployeService {
 
 
 	public void mettreAjourPasswordByEmployeId(String password, int employeId) {
-		//testing the ngrok
 Optional<Employe> emp= employeRepository.findById(employeId);
 		if(emp.isPresent()) {
 		Employe employe = employeRepository.findById(employeId).get();
