@@ -6,7 +6,6 @@ import javax.faces.webapp.FacesServlet;
 import javax.servlet.DispatcherType;
 
 
-//import org.modelmapper.ModelMapper;
 
 import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.springframework.boot.SpringApplication;
@@ -32,10 +31,7 @@ public class TimesheetApplication {
 		return new ServletRegistrationBean(servlet, "*.jsf");
 	}
 
-	/*@Bean
-	public ModelMapper modelMapper() {
-	    return new ModelMapper();
-	}*/
+	
 
 	@Bean
 	public FilterRegistrationBean rewriteFilter() {
