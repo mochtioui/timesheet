@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Order;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.text.ParseException;
@@ -37,9 +38,31 @@ import tn.esprit.spring.services.IEntrepriseService;
 
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.services.ContratServiceImpl;
-
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.runner.RunWith;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.services.IEntrepriseService;
+import java.text.ParseException;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.services.ContratServiceImpl;
 @TestMethodOrder(OrderAnnotation.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest
