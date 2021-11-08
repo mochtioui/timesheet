@@ -67,9 +67,15 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 
 	@Transactional	
 	public void affecterEmployeADepartement(int employeId, int depId) {
-		Departement depManagedEntity = deptRepoistory.findById(depId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
 
+		Optional<Departement> dep= deptRepoistory.findById(depId);
+		if(dep.isPresent()) {
+		Departement depManagedEntity = deptRepoistory.findById(depId).get();
+	}
+	Optional<Employe> emp= employeRepository.findById(employeId);
+		if(emp.isPresent()) {
+		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+}
 		if(depManagedEntity.getEmployes() == null){
 
 			List<Employe> employes = new ArrayList<>();
@@ -85,9 +91,10 @@ Optional<Employe> emp= employeRepository.findById(employeId);
 	}
 	@Transactional
 	public void desaffecterEmployeDuDepartement(int employeId, int depId)
-	{
+	{Optional<Departement> dep= deptRepoistory.findById(depId);
+		if(dep.isPresent()) {
 		Departement dep = deptRepoistory.findById(depId).get();
-
+}
 		int employeNb = dep.getEmployes().size();
 		for(int index = 0; index < employeNb; index++){
 			if(dep.getEmployes().get(index).getId() == employeId){

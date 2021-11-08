@@ -20,7 +20,6 @@ public class DepartementServiceImpl implements IDepartementService {
 
 	public List<Departement> getAllDepartements() {
 		logger.info("Je vais lancer la methode getAllDepartements");
-		List<Departement> dep = (List<Departement>) deptRepoistory.findAll();
 		logger.debug("L'affichage des Departements");
 		return (List<Departement>) deptRepoistory.findAll();
 	}
