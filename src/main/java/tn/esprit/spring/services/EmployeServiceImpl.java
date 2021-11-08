@@ -52,9 +52,8 @@ public class EmployeServiceImpl implements IEmployeService {
 	public void mettreAjourPasswordByEmployeId(String password, int employeId) {
 Optional<Employe> emp= employeRepository.findById(employeId);
 		if(emp.isPresent()) {
-		Employe employe = employeRepository.findById(employeId).get();
-		employe.setPassword(password);
-		employeRepository.save(employe);
+		emp.get().setPassword(password);
+		employeRepository.save(emp.get());
 		}
 		else 
 		{
