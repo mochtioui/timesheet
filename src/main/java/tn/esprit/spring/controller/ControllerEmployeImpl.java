@@ -30,6 +30,14 @@ public class ControllerEmployeImpl  {
 	@Autowired
 	IEmployeService employeService;
 
+    	
+	@Autowired
+	EmployeRepository employeRepository;
+	
+	@Autowired
+	ContratRepository contratRepository;
+
+
 	private String login; 
 	private String password; 
 	private Boolean loggedIn;
@@ -185,13 +193,25 @@ public class ControllerEmployeImpl  {
 	}
 
 	public int ajouterContrat(Contrat contrat) {
+		l.info("add contract ");
 		employeService.ajouterContrat(contrat);
 		return contrat.getReference();
 	}
 
 	public void affecterContratAEmploye(int contratId, int employeId)
 	{
-		employeService.affecterContratAEmploye(contratId, employeId);
+		l.info("affect employ a contract ");
+		l.info("je chercher l'empoyer ");
+		Optional<Employe> emp = employeRepository.findById(employeId);
+		Optional<Contrat> con= contratRepository.findById(contratId);
+		if(emp.isPresent() && con.isPresent()) {
+			employeService.affecterContratAEmploye(contratId, employeId);
+
+		}
+		else {
+			l.info("something wrong  ");
+
+		}
 	}
 
 
@@ -204,7 +224,18 @@ public class ControllerEmployeImpl  {
 
 	}
 	public void deleteContratById(int contratId) {
-		employeService.deleteContratById(contratId);
+		l.info("delete employer ");
+		Optional<Contrat> con= contratRepository.findById(contratId);
+		if(con.isPresent()) {
+			l.info("delete contract success");
+			employeService.deleteContratById(contratId);
+
+		}
+		
+		else {
+			l.info("something wrong");
+
+		}
 	}
 
 	public int getNombreEmployeJPQL() {
@@ -227,8 +258,8 @@ public class ControllerEmployeImpl  {
 	}
 
 	public void deleteAllContratJPQL() {
+		l.info("delete all contract ");
 		employeService.deleteAllContratJPQL();
-
 	}
 
 	public float getSalaireByEmployeIdJPQL(int employeId) {
