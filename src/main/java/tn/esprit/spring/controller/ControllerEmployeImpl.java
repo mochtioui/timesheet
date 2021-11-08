@@ -23,9 +23,7 @@ import tn.esprit.spring.entities.Timesheet;
 import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.services.IEmployeService;
-/*import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-	private static final Logger logger= LogManager.getLogger(TimesheetApplicationTests.class);*/
+
 
 
 @Scope(value = "session")

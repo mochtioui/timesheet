@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -77,7 +76,7 @@ public class Employe implements Serializable {
 
 
 
-	public Employe( boolean actif , String mail, String nom, String password, String prenom, Role role) {
+	public Employe( boolean actif , String email, String nom, String password, String prenom, Role role) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
